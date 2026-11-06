@@ -1,0 +1,1 @@
+export const fullName = "Dale Durham";
