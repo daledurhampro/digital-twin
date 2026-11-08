@@ -1,6 +1,5 @@
 An AI based digital twin with my personal career and experience purposely in it. The frontend is Next JS deployed to a static website in S3 and served via CloudFront. 
 The backend is FastAPI served via API Gateway with the UI calling a serverless Lambda function to invoke the customized Bedrock LLM (Nova). 
-Though it may appear simple from the outside looking in, it it doing and using quite a bit under the hood to make it all work.
 
 [!WARNING]
 **Private repository: personal data. Do not clone, fork, or reuse.**
