@@ -2,7 +2,41 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User } from 'lucide-react';
+import ReactMarkdown, { type Components } from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { fullName } from "../data/data";
+
+// Tailwind preflight strips default element styles, so restore them for markdown output.
+const markdownComponents: Components = {
+    p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+    a: ({ children, href }) => (
+        <a href={href} target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">
+            {children}
+        </a>
+    ),
+    ul: ({ children }) => <ul className="list-disc pl-5 mb-2 last:mb-0 space-y-1">{children}</ul>,
+    ol: ({ children }) => <ol className="list-decimal pl-5 mb-2 last:mb-0 space-y-1">{children}</ol>,
+    h1: ({ children }) => <h1 className="text-lg font-bold mb-2">{children}</h1>,
+    h2: ({ children }) => <h2 className="text-base font-bold mb-2">{children}</h2>,
+    h3: ({ children }) => <h3 className="font-semibold mb-1">{children}</h3>,
+    blockquote: ({ children }) => (
+        <blockquote className="border-l-4 border-gray-300 pl-3 italic mb-2 last:mb-0">{children}</blockquote>
+    ),
+    pre: ({ children }) => (
+        <pre className="bg-gray-900 text-gray-100 rounded p-3 mb-2 last:mb-0 overflow-x-auto text-sm">{children}</pre>
+    ),
+    code: ({ children, className }) => (
+        <code className={className ?? 'bg-black/10 rounded px-1 py-0.5 text-sm font-mono'}>{children}</code>
+    ),
+    table: ({ children }) => (
+        <div className="overflow-x-auto mb-2 last:mb-0">
+            <table className="min-w-full border-collapse text-sm">{children}</table>
+        </div>
+    ),
+    th: ({ children }) => <th className="border border-gray-300 px-2 py-1 text-left font-semibold">{children}</th>,
+    td: ({ children }) => <td className="border border-gray-300 px-2 py-1">{children}</td>,
+    del: ({ children }) => <del className="line-through">{children}</del>,
+};
 
 interface Message {
     id: string;
@@ -162,7 +196,11 @@ export default function Twin() {
                                     : 'bg-white border border-gray-200 text-gray-800'
                             }`}
                         >
-                            <p className="whitespace-pre-wrap">{message.content}</p>
+                            <div className="break-words">
+                                <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                                    {message.content}
+                                </ReactMarkdown>
+                            </div>
                             <p
                                 className={`text-xs mt-1 ${
                                     message.role === 'user' ? 'text-slate-300' : 'text-gray-500'
