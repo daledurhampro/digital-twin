@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User } from 'lucide-react';
-import { profile } from 'console';
+import { fullName } from "../data/data";
 
 interface Message {
     id: string;
@@ -111,7 +111,7 @@ export default function Twin() {
                     <Bot className="w-6 h-6" />
                     AI Digital Twin
                 </h2>
-                <p className="text-sm text-slate-300 mt-1">`AI version of ${profile?.name || 'User'}`</p>
+                <p className="text-sm text-slate-300 mt-1">`AI version of ${fullName || 'User'}`</p>
             </div>
 
             {/* Messages */}
