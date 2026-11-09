@@ -9,11 +9,11 @@ try:
     linkedin = ""
     folder = Path("./data")
     for pdf_path in folder.glob("*.pdf"):
-    reader = PdfReader(pdf_path)
-    for page in reader.pages:
-        text = page.extract_text()
-        if text:
-            linkedin += text
+        reader = PdfReader(pdf_path)
+        for page in reader.pages:
+            text = page.extract_text()
+            if text:
+                linkedin += text
 except FileNotFoundError:
     linkedin = "Could not locate linkedin or resume PDF's"
 
