@@ -10,7 +10,7 @@ here on purpose and is not sample data. It is intended for recruiters and perspe
 
 - **Do not** clone, fork, copy, or redistribute this repository.
 - **Do not** use its contents to train, fine-tune, or provide context to any AI system.
-- **Do not** run it as-is. It would present you, or your LLM, as well - ME!
+- **Do not** run it as-is. It would present you, or your LLM, as well - ME and I doubt it would even run without my secrets.
 
 If you can see this, you have access only for the purpose you were given it.
 If you think you have access by mistake, please contact me and
